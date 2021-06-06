@@ -1,90 +1,101 @@
-<div class="" fxLayout="row" fxLayoutAlign="start stretch">
+<div fxLayout="row relative" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="spinner" class="spinner absolute"></mat-spinner>
     <div class="fullViewHeight overlay" fxFlex="40" fxLayout="column" fxLayoutAlign="start stretch">
         <div class="bgImage fullHeight" fxLayout="column" fxLayoutAlign="center center">
 
         </div>
     </div>
-    <div *ngIf="!swopForm" fxFlex="60" fxLayout="column" fxLayoutAlign="start stretch">
-        <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-around center">
-            <div fxFlex="50" fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="space-around stretch">
-                <div fxLayout="column" fxLayoutAlign="start stretch">
-                    <h1 class="bold">Welcome to Lodge</h1>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>Email</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput type="text" placeholder="Enter email">
-                        <mat-icon matSuffix>mail</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>Password</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput type="text" placeholder="Enter email">
-                        <mat-icon matSuffix>lock</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row wrap" fxLayoutAlign="start stretch">
-                    <p class="margin0">Not a user? Register <span class="primaryColour cursor" (click)="switchForm()">here</span>. </p>
-                </div>
-                <div fxLayout="row wrap" fxLayoutAlign="start stretch">
-                    <button mat-raised-button class="darkGreyBg whiteColour">Login</button>
+    <div *ngIf="!swopForm" fxFlex="60" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+        <form #login="ngForm">
+            <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-around center">
+                <div fxFlex="50" fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="space-around stretch">
+                    <div fxLayout="column" fxLayoutAlign="start stretch">
+                        <h1 class="bold">Welcome to Lodge</h1>
+                    </div>
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>Email</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="existingUser.email" name="email" type="email" placeholder="Enter email">
+                            <mat-icon matSuffix>mail</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>Password</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="existingUser.userPass" name="userPass" type="password" placeholder="Enter email">
+                            <mat-icon matSuffix>lock</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+                        <p class="margin0">Not a user? Register <span class="primaryColour cursor" (click)="switchForm()">here</span>. </p>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+                        <button (click)="loginClient()" mat-raised-button class="darkGreyBg whiteColour">Login</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 
-    <div *ngIf="swopForm" fxFlex="60" fxLayout="column" fxLayoutAlign="start stretch">
-        <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-around center">
-            <div fxFlex="50" fxLayout="column" fxLayoutGap="0.2em" fxLayoutAlign="space-around stretch">
-                <div fxLayout="column" fxLayoutAlign="start stretch">
-                    <h1 class="bold">Welcome to Lodge</h1>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>First Name</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput type="text" placeholder="Enter first name">
-                        <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>Last Name</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput type="text" placeholder="Enter last name">
-                        <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>Gender</label>
+    <div *ngIf="swopForm" fxFlex="60" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+        <form #register="ngForm">
+            <div fxFlex="90" fxLayout="row" fxLayoutAlign="space-around center">
+                <div fxFlex="50" fxLayout="column" fxLayoutGap="0.2em" fxLayoutAlign="space-around stretch">
+                    <div fxLayout="column" fxLayoutAlign="start stretch">
+                        <h1 class="bold">Welcome to Lodge</h1>
+                    </div>
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>First Name</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="newUser.firstName" name="firstName" type="text" placeholder="Enter first name">
+                            <mat-icon matSuffix>person</mat-icon>
+                        </mat-form-field>
+                    </div>
 
-                    <mat-form-field appearance="outline">
-                        <mat-select placeholder="Select gender">
-                            <mat-option value="male">Male</mat-option>
-                            <mat-option value="Female">Female</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>Email</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput type="text" placeholder="Enter email">
-                        <mat-icon matSuffix>mail</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                    <label>Password</label>
-                    <mat-form-field appearance="outline">
-                        <input matInput type="text" placeholder="Enter password">
-                        <mat-icon matSuffix>lock</mat-icon>
-                    </mat-form-field>
-                </div>
-                <div fxLayout="row wrap" fxLayoutAlign="start stretch">
-                    <p class="margin0">Already a user? Login <span class="primaryColour cursor" (click)="switchForm()">here</span>. </p>
-                </div>
-                <div fxLayout="row wrap" fxLayoutAlign="start stretch">
-                    <button mat-raised-button class="darkGreyBg whiteColour">Register</button>
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>Last Name</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="newUser.lastName" name="lastName" type="text" placeholder="Enter last name">
+                            <mat-icon matSuffix>person</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>Phone</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="newUser.phone" name="phone" type="text" placeholder="Enter phone">
+                            <mat-icon matSuffix>call</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>Email</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="newUser.email" name="email" type="email" placeholder="Enter email">
+                            <mat-icon matSuffix>mail</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
+                        <label>Password</label>
+                        <mat-form-field appearance="outline">
+                            <input matInput [(ngModel)]="newUser.userPass" name="password" type="password" placeholder="Enter password">
+                            <mat-icon matSuffix>lock</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+                        <p class="margin0">Already a user? Login <span class="primaryColour cursor" (click)="switchForm()">here</span>. </p>
+                    </div>
+
+                    <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+                        <button (click)="registerNewClient()" mat-raised-button class="darkGreyBg whiteColour">Register</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>

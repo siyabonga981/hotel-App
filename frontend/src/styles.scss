@@ -113,8 +113,6 @@ $white: #fff;
 
 .absolute {
     position: absolute;
-    left: 10%;
-    top: 30%;
 }
 
 
@@ -130,4 +128,14 @@ $white: #fff;
 
 .cursor {
     cursor: pointer;
+}
+
+.spinner {
+    z-index: 9999;
+    left: calc(50% - 50px);
+    top: 50%;
+    circle,
+    .mat-spinner circle {
+        stroke: $darkGrey !important;
+    }
 }
