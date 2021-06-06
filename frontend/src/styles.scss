@@ -1,1 +1,133 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$darkGrey: #7f8791;
+$lightGrey: #9ea5ad;
+$grey: #ced1d6;
+$lighterGrey: #e6e7eb;
+$lightestGrey: #f6f7f9;
+$white: #fff;
+
+/* Background */
+
+.darkGreyBg {
+    background: $darkGrey;
+}
+
+.lightGreyBg {
+    background: $lightGrey;
+}
+
+.lighterGreyBg {
+    background: $lighterGrey;
+}
+
+.lightestGrey {
+    background: $lightestGrey;
+}
+
+.overlay {
+    background: rgb(31, 30, 30);
+    height: 100vh;
+    width: 100vw;
+    .bgImage {
+        background-image: url('./assets/img/lodge.jpg');
+        background-position: center center;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.fullViewHeight {
+    height: 100vh;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+
+/* Colours */
+
+.primaryColour {
+    color: $darkGrey;
+}
+
+.whiteColour {
+    color: $white;
+}
+
+
+/* Form input */
+
+.inputContainer {
+    label {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .mat-form-field {
+        font-size: 14px;
+        line-height: 1;
+        width: 100% !important;
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+        .mat-form-field-infix {
+            padding: 0em 0 0.6em 0 !important;
+            width: 100% !important;
+        }
+        .mat-datepicker-toggle-active {
+            color: $darkGrey;
+        }
+        input {
+            cursor: pointer;
+            background: none !important;
+        }
+        input:-webkit-autofill {
+            -webkit-background-clip: text !important;
+            background-clip: border-box;
+        }
+    }
+}
+
+.relatve {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+}
+
+
+/* Margin */
+
+.margin0 {
+    margin: 0 !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.cursor {
+    cursor: pointer;
+}
