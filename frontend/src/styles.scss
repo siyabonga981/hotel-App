@@ -5,26 +5,75 @@ body {
     height: 100%;
 }
 
-body {
-    margin: 0;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+    margin: 0 !important;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-$darkGrey: #7f8791;
-$lightGrey: #9ea5ad;
+// $darkGrey: #7f8791;
+$darkBlue: #00a3bf;
+// $lightBlue: #9ea5ad;
+$lightBlue: #00a3bf;
 $grey: #ced1d6;
 $lighterGrey: #e6e7eb;
+$whiteBackground: #fff;
 $lightestGrey: #f6f7f9;
 $white: #fff;
+.header {
+    mat-icon {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 22px !important;
+        font-weight: lighter;
+    }
+}
+
+.height60px {
+    height: 60px;
+}
+
+.height58px {
+    height: 58px;
+}
+
+.font11px {
+    font-size: 11px;
+}
+
+.icon-box {
+    background: $white;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.routerHeight {
+    height: calc(100vh - 120px);
+}
+
+// .footer {}
+.hoverBlue:hover {
+    color: $darkBlue;
+}
+
 
 /* Background */
 
-.darkGreyBg {
-    background: $darkGrey;
+.darkBlueBg {
+    background: $darkBlue;
 }
 
-.lightGreyBg {
-    background: $lightGrey;
+.lightBlueBg {
+    background: $lightBlue;
 }
 
 .lighterGreyBg {
@@ -40,7 +89,7 @@ $white: #fff;
     height: 100vh;
     width: 100vw;
     .bgImage {
-        background-image: url('./assets/img/lodge.jpg');
+        background-image: url("./assets/img/lodge.jpg");
         background-position: center center;
         object-fit: cover;
         opacity: 0.5;
@@ -67,7 +116,7 @@ $white: #fff;
 /* Colours */
 
 .primaryColour {
-    color: $darkGrey;
+    color: $darkBlue;
 }
 
 .whiteColour {
@@ -78,6 +127,10 @@ $white: #fff;
 /* Form input */
 
 .inputContainer {
+    .mat-form-field-appearance-outline .mat-form-field-flex {
+        box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
+        -webkit-box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
+    }
     label {
         font-size: 14px;
         font-weight: bold;
@@ -86,15 +139,22 @@ $white: #fff;
         font-size: 14px;
         line-height: 1;
         width: 100% !important;
+        input {
+            position: relative;
+            top: -3px;
+            left: 16px;
+            // font-size: 14px;
+        }
         .mat-form-field-wrapper {
             padding-bottom: 0;
+            margin-bottom: 0;
         }
         .mat-form-field-infix {
-            padding: 0em 0 0.6em 0 !important;
+            // padding: 0em 0 0.6em 0 !important;
             width: 100% !important;
         }
         .mat-datepicker-toggle-active {
-            color: $darkGrey;
+            color: $darkBlue;
         }
         input {
             cursor: pointer;
@@ -105,9 +165,15 @@ $white: #fff;
             background-clip: border-box;
         }
     }
+    .mat-form-field-prefix .mat-icon,
+    .mat-form-field-suffix .mat-icon {
+        color: $darkBlue;
+        position: relative;
+        top: -5px;
+    }
 }
 
-.relatve {
+.relative {
     position: relative;
 }
 
@@ -120,6 +186,23 @@ $white: #fff;
 
 .margin0 {
     margin: 0 !important;
+}
+
+.marginTop2em {
+    margin-top: 3em !important;
+}
+
+
+/* Padding */
+
+.paddingTLB10px {
+    padding: 10px 0 10px 10px;
+}
+
+.borderTop1px {
+    border: 1px solid $lightBlue;
+    box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
+    -webkit-box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
 }
 
 .bold {
@@ -136,6 +219,6 @@ $white: #fff;
     top: 50%;
     circle,
     .mat-spinner circle {
-        stroke: $darkGrey !important;
+        stroke: $darkBlue !important;
     }
 }

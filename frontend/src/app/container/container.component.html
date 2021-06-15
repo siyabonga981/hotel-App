@@ -1,1 +1,30 @@
-<p>container works!</p>
+<div fxLayout="row" fxLayoutAlign="center start" fxFill>
+    <div fxLayout="column" fxFlex="100" fxLayoutAlign="start stretch">
+        <div class="header paddingTLB10px height60px darkBlueBg" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="30" fxLayout="column" fxLayoutAlign="start center">
+                <img class="fullWidth" src="../../assets/img/logo.svg" alt="">
+            </div>
+            <div fxLayout="column" fxFlex="20" fxLayoutAlign="flex-end center">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <mat-icon class="icon">more_vert</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxFlex="95" fxLayoutAlign="center center">
+            <div class="routerHeight height60px darkBlue" fxLayout="row" fxLayoutAlign="center center">
+                <h1>Hello</h1>
+            </div>
+        </div>
+
+        <div class="footer height60px borderTop1px" fxLayout="row" fxLayoutAlign="center center">
+            <div fxLayout="column" fxFlex="30" fxFlex.xs="100" fxLayoutAlign="start stretch">
+                <div fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="start center">
+                    <div class="icon-box height58px" fxFlex="25" fxFlex.xs="25" *ngFor="let item of footerItems" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center">
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                        <mat-label class="font10px bold">{{ item.name }}</mat-label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

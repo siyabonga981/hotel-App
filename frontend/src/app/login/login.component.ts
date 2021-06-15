@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
   swopForm = false;
   spinner = false;
   newUser: any = {
-    firstName: '',
-    lastName: '',
+    fullName: '',
     phone: null,
     email: '',
     userPass: '',
@@ -27,6 +26,7 @@ export class LoginComponent implements OnInit {
   };
   clients: any[] = [];
   found = false;
+  formName: string = 'Login';
 
   constructor(private api: ApiService, private snackbar: MatSnackBar, private router: Router) {}
 
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   switchForm(): void {
     this.swopForm = !this.swopForm;
+    this.formName = 'Register';
   }
 
   loginClient(): any {
