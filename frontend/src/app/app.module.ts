@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BookComponent } from './book/book.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     DashboardComponent,
     ContainerComponent,
-    LoginComponent
+    LoginComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,

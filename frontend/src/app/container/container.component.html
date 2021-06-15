@@ -10,18 +10,18 @@
                 </div>
             </div>
         </div>
-        <div fxLayout="column" fxFlex="95" fxLayoutAlign="center center">
-            <div class="routerHeight height60px darkBlue" fxLayout="row" fxLayoutAlign="center center">
-                <h1>Hello</h1>
+        <div class="marginTop2em routerHeight" fxLayout="column" fxLayoutAlign="start stretch">
+            <div fxLayout="column" fxLayoutAlign="start stretch">
+                <app-book></app-book>
             </div>
         </div>
 
-        <div class="footer height60px borderTop1px" fxLayout="row" fxLayoutAlign="center center">
-            <div fxLayout="column" fxFlex="30" fxFlex.xs="100" fxLayoutAlign="start stretch">
-                <div fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="start center">
-                    <div class="icon-box height58px" fxFlex="25" fxFlex.xs="25" *ngFor="let item of footerItems" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center">
+        <div class="footer height60px borderTop1px " fxLayout="row " fxLayoutAlign="center center ">
+            <div fxLayout="column " fxFlex="30 " fxFlex.xs="100 " fxLayoutAlign="start stretch ">
+                <div fxLayout="row " fxLayoutGap="3px " fxLayoutAlign="start center ">
+                    <div class="icon-box height58px " fxFlex="25 " fxFlex.xs="25 " *ngFor="let item of footerItems " fxLayout="column " fxLayout.xs="column " fxLayoutAlign="center center ">
                         <mat-icon>{{ item.icon }}</mat-icon>
-                        <mat-label class="font10px bold">{{ item.name }}</mat-label>
+                        <mat-label class="font10px bold ">{{ item.name }}</mat-label>
                     </div>
                 </div>
             </div>

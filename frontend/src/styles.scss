@@ -57,7 +57,8 @@ $white: #fff;
 }
 
 .routerHeight {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 120px - 2em);
+    overflow-y: scroll;
 }
 
 // .footer {}
@@ -127,6 +128,11 @@ $white: #fff;
 /* Form input */
 
 .inputContainer {
+    .mat-select-placeholder {
+        padding-left: 15px;
+        position: relative;
+        top: -5px;
+    }
     .mat-form-field-appearance-outline .mat-form-field-flex {
         box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
         -webkit-box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
@@ -189,7 +195,7 @@ $white: #fff;
 }
 
 .marginTop2em {
-    margin-top: 3em !important;
+    margin-top: 2em !important;
 }
 
 
