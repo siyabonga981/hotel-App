@@ -1,7 +1,7 @@
 <div class="" fxLayout="row relative" fxLayoutAlign="center center">
     <mat-spinner *ngIf="spinner" class="spinner absolute"></mat-spinner>
-    <div *ngIf="!swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
-        <form #login="ngForm">
+    <div *ngIf="swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+        <form #login="ngForm" autocomplete="new-password">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex="94" fxLayout="column" fxLayoutGap="1.7em" fxLayoutAlign="space-around stretch">
                     <div class="margin0" fxLayout="column" fxLayoutAlign="center center">
@@ -16,17 +16,41 @@
                         </h3>
                     </div>
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                        <mat-form-field appearance="outline">
-                            <input matInput [(ngModel)]="existingUser.email" name="email" type="email" placeholder="Enter email">
+                                             <mat-form-field appearance="outline">
+                            <input required matInput [(ngModel)]="existingUser.email" #email='ngModel' pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" name="email" type="email" placeholder="Enter email">
                             <mat-icon matPrefix>mail</mat-icon>
                         </mat-form-field>
+                        <div *ngIf="!email.valid && (email?.touched || email?.dirty)">
+                            <mat-error *ngIf="email.errors.pattern">
+                                Email format is invalid
+                            </mat-error>
+                            <mat-error *ngIf="email.errors.required">
+                                Email is required
+                            </mat-error>
+                        </div>
                     </div>
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                        <mat-form-field appearance="outline">
-                            <input matInput [(ngModel)]="existingUser.userPass" name="userPass" type="password" placeholder="Enter email">
+                                                <mat-form-field appearance="outline">
+                            <input required matInput [(ngModel)]="existingUser.userPass" #password="ngModel" name="password" pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" autocomplete="new-password" [type]="hide ? 'password' : 'text'" minlength="8" maxlength="8" placeholder="Enter password">
                             <mat-icon matPrefix>lock</mat-icon>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </mat-form-field>
+                        <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                            <mat-error *ngIf="password.errors.required">
+                                Password is required
+                            </mat-error>
+                            <mat-error *ngIf="password.errors.pattern">
+                                Password must contain : <br>
+                                At least 1 lowercase letter (a) <br>
+                                At least 1 uppercase letter (A)<br>
+                                At least 1 number (1)<br>
+                                At least 1 special character (!@#$%) <br>
+                            </mat-error>
+                            <mat-error *ngIf="password.errors.minlength">
+                                Password minimum length is {{ password.errors.minlength?.requiredLength }}
+                            </mat-error>
+                        </div>
                     </div>
 
 
@@ -36,7 +60,7 @@
 
                     <div fxLayout="row wrap" fxLayoutAlign="center center">
                         <div fxFlex="90" fxLayout="column" fxLayoutAlign="start stretch">
-                            <button (click)="loginClient()" mat-raised-button class="darkBlueBg whiteColour">Login</button>
+                            <button [disabled]="!login.valid" (click)="loginClient()" mat-raised-button class="darkBlueBg whiteColour">Login</button>
                         </div>
                     </div>
                     <div fxLayout="row wrap" fxLayoutAlign="center center">
@@ -47,8 +71,8 @@
         </form>
     </div>
 
-    <div *ngIf="swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
-        <form #register="ngForm">
+    <div *ngIf="!swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+        <form #register="ngForm" autocomplete="new-password">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex="94" fxLayout="column" fxLayoutGap="1.7em" fxLayoutAlign="space-around stretch">
                     <div class="margin0" fxLayout="column" fxLayoutAlign="center center">
@@ -59,39 +83,84 @@
                     </div>
                     <div class="inputContainer marginTop1em" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input matInput [(ngModel)]="newUser.fullName" name="fullName" type="text" placeholder="Enter full name">
+                            <input onInput="fullName.value = fullName.value.replace(/[`&#33;@#$%^&*&#40;&#41;_+\-&#61;\[\]{};':\\|,.&#60;&#62;\/?~0-9]/g, '')" required matInput [(ngModel)]="newUser.fullName" #fullName="ngModel" name="fullName" pattern="^[a-zA-Z]+\s[a-zA-Z]+$" minlength="5" type="text" placeholder="Enter full name" [value]="fullName.value">
                             <mat-icon matPrefix>person</mat-icon>
                         </mat-form-field>
+                        <div *ngIf="!fullName?.valid && (fullName?.dirty || fullName?.touched)" class="error">
+                            <mat-error *ngIf="fullName.errors.required">
+                                Full name is required
+                            </mat-error>
+                            <mat-error *ngIf="fullName.errors.minlength">
+                                Full Name's minimum length is {{fullName.errors.minlength?.requiredLength}}
+                            </mat-error>
+                            <mat-error *ngIf="fullName.errors.pattern">Expected a space between name and surname</mat-error>
+                        </div>
                     </div>
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input matInput [(ngModel)]="newUser.phone" name="phone" type="text" placeholder="Enter phone">
+                            <input (keyup)="validatePhone(newUser.phone)" required matInput [(ngModel)]="newUser.phone" #phone="ngModel" name="phone" type="text" [value]="modifiedPhone" placeholder="Enter phone in form +27 xxxxxxxxx" minlength="13" maxlength="13">
                             <mat-icon matPrefix>call</mat-icon>
                         </mat-form-field>
+                        <div *ngIf="!phone?.valid && (phone?.touched || phone?.dirty) ">
+                            <mat-error *ngIf="phone.errors.required">
+                                Phone is required
+                            </mat-error>
+                            <mat-error *ngIf="phone.errors.minlength">
+                                Phone required length is {{ phone.errors.minlength?.requiredLength }} 
+                            </mat-error>
+                            <mat-error *ngIf="phoneFails">
+                                Phone must be in this format: +27 71xxxxxxx
+                            </mat-error>
+                        </div>
                     </div>
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input matInput [(ngModel)]="newUser.email" name="email" type="email" placeholder="Enter email">
+                            <input required matInput [(ngModel)]="newUser.email" #email='ngModel' pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" name="email" type="email" placeholder="Enter email">
                             <mat-icon matPrefix>mail</mat-icon>
                         </mat-form-field>
+                        <div *ngIf="!email.valid && (email?.touched || email?.dirty)">
+                            <mat-error *ngIf="email.errors.pattern">
+                                Email format is invalid
+                            </mat-error>
+                            <mat-error *ngIf="email.errors.required">
+                                Email is required
+                            </mat-error>
+                        </div>
                     </div>
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input matInput [(ngModel)]="newUser.userPass" name="password" type="password" placeholder="Enter password">
+                            <input required matInput [(ngModel)]="newUser.userPass" #password="ngModel" name="password" pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" autocomplete="new-password" [type]="hide ? 'password' : 'text'" minlength="8" maxlength="8" placeholder="Enter password">
                             <mat-icon matPrefix>lock</mat-icon>
+                                                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
                         </mat-form-field>
+                        <div *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                            <mat-error *ngIf="password.errors.required">
+                                Password is required
+                            </mat-error>
+                            <mat-error *ngIf="password.errors.pattern">
+                                Password must contain : <br>
+                                At least 1 lowercase letter (a) <br>
+                                At least 1 uppercase letter (A)<br>
+                                At least 1 number (1)<br>
+                                At least 1 special character (!@#$%) <br>
+                            </mat-error>
+                            <mat-error *ngIf="password.errors.minlength">
+                                Password minimum length is {{ password.errors.minlength?.requiredLength }}
+                            </mat-error>
+                        </div>
                     </div>
 
                     <div fxLayout="row wrap" fxLayoutAlign="center center">
                         <div fxFlex="90" fxLayout="column" fxLayoutAlign="start stretch">
-                            <button (click)="registerNewClient()" mat-raised-button class="darkBlueBg whiteColour">Register</button>
+                            <button [disabled]="!register.valid" (click)="registerNewClient()" mat-raised-button class="darkBlueBg whiteColour">Register</button>
                         </div>
                     </div>
                     <div fxLayout="row wrap" fxLayoutAlign="center center">
-                        <p class="margin0">Already have an account? Register <span class="primaryColour cursor" (click)="switchForm()">here</span>. </p>
+                        <p class="margin0">Already have an account? Login <span class="primaryColour cursor" (click)="switchForm()">here</span>. </p>
                     </div>
                 </div>
             </div>
