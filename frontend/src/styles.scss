@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 
 html,
 body {
@@ -27,6 +28,7 @@ $lighterGrey: #e6e7eb;
 $whiteBackground: #fff;
 $lightestGrey: #f6f7f9;
 $white: #fff;
+$black: #000;
 .header {
     mat-icon {
         width: 22px !important;
@@ -39,26 +41,59 @@ $white: #fff;
 .height60px {
     height: 60px;
 }
+.height70px {
+    height: 70px;
+}
 
 .height58px {
     height: 58px;
 }
-
+.height50px{
+    height: 50px;
+}
 .font11px {
     font-size: 11px;
+}
+.height220px{
+    height: 220px;
 }
 
 .icon-box {
     background: $white;
 }
-
+.bottomBanner{
+    bottom: 0;
+    color: $black;
+    button{
+    padding: 5px 22px;
+    right: 10px;
+    border: 1px solid $darkBlue;
+    border-radius: 5px;
+    background: $white;
+    &:hover{
+     color: $white;
+     background: $darkBlue;
+     border: 1px solid $black;
+     transition: ease-in 0.3s;
+    }
+    }
+}
 .bold {
     font-weight: bold;
 }
-
+.boxShadow{
+    box-shadow: -3px 7px 21px -6px rgba(0,163,191,0.75);
+-webkit-box-shadow: -3px 7px 21px -6px rgba(0,163,191,0.75);
+-moz-box-shadow: -3px 7px 21px -6px rgba(0,163,191,0.75);
+}
 .routerHeight {
     height: calc(100vh - 120px - 2em);
     overflow-y: scroll;
+    
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
 
 // .footer {}
@@ -66,13 +101,28 @@ $white: #fff;
     color: $darkBlue;
 }
 
-
+mat-drawer{
+    width: 85%;
+}
 /* Background */
 
 .darkBlueBg {
     background: $darkBlue;
 }
+.round{
+    border-radius: 50%;
+    h1{
+    font-size: 60px;
+    top: 35%;
+    right: 25%;
+    }
+}
 
+.close{
+    bottom: 85px;
+    right: -79px;
+    font-size: 35px;
+}
 .lightBlueBg {
     background: $lightBlue;
 }
@@ -83,6 +133,9 @@ $white: #fff;
 
 .lightestGrey {
     background: $lightestGrey;
+}
+.width100px{
+    width: 100px
 }
 
 .overlay {
@@ -97,10 +150,24 @@ $white: #fff;
     }
 }
 
+.imgOverlay{
+    background: rgb(31, 30, 30);
+    // height: 180px;
+        img{
+            opacity: 0.9;
+            height: 235px;
+        }
+}
+.bannerTop{
+        z-index: -1;
+    height: 208px;
+}
 .fullWidth {
     width: 100%;
 }
-
+.z-index100{
+    z-index: 100;
+}
 .fullHeight {
     height: 100%;
 }
@@ -113,25 +180,51 @@ $white: #fff;
     height: 100%;
 }
 
-
+.height100px{
+    height: 100px;
+}
 /* Colours */
 
 .primaryColour {
     color: $darkBlue;
 }
 
+.borderBottom{
+    border-bottom: 1px solid $lighterGrey;
+}
+.margin15px{
+    margin: 15px 0;
+}
+.marginLeft20px{
+    margin-left: 20px;
+}
+.font-size18px{
+    font-size: 18px;
+}
 .whiteColour {
-    color: $white;
+    color: $white !important;
+}
+.blackColour{
+    color: $black;
 }
 
+.greyColour{
+    color:  #ccc;
+}
 
+.cardContent{
+    bottom: 60px;
+}
+.suite{
+    font-size: 25px;
+    bottom: -87px;
+    left: 13px;
+}
 /* Form input */
 
 .inputContainer {
     .mat-select-placeholder {
         padding-left: 15px;
-        position: relative;
-        top: -5px;
     }
     .mat-form-field-appearance-outline .mat-form-field-flex {
         box-shadow: 0px -1px 8px 0px rgb(110 177 199 / 80%);
@@ -188,10 +281,25 @@ $white: #fff;
 }
 
 .absolute {
-    position: absolute;
+    position: absolute !important;
 }
 
+.addWL{
+    left: 42px;
+    top: 16px;
+}
 
+.border10px{
+    border-radius: 10px !important;
+}
+
+.viewBtn{
+    right: 1px;
+    bottom: 0;
+    background: rgba(255,255,255, 0.3);
+    padding: 3px 15px;
+    border-radius: 10px 0 10px 0;
+}
 /* Margin */
 
 .margin0 {
@@ -201,12 +309,22 @@ $white: #fff;
 .marginTop2em {
     margin-top: 2em !important;
 }
+.marginTop15px {
+    margin-top: 15px !important;
+}
 
+.left12px{
+    left: 12px;
+}
 
+.infoIcon{
+        top: -100px;
+    right: 11px;
+}
 /* Padding */
 
-.paddingTLB10px {
-    padding: 10px 0 10px 10px;
+.padding10px {
+    padding: 10px;
 }
 
 .borderTop1px {
@@ -216,7 +334,11 @@ $white: #fff;
 }
 
 .bold {
-    font-weight: bold !important;
+    font-weight: 500 !important;
+}
+
+.font15px{
+    font-size: 15px;
 }
 
 .cursor {
@@ -231,4 +353,17 @@ $white: #fff;
     .mat-spinner circle {
         stroke: $darkBlue !important;
     }
+}
+
+.active {
+  color: $white;
+  background-color: $darkBlue;
+  mat-icon{
+  color: $white !important;
+  }
+}
+
+.none{
+    background: transparent;
+    color: $black;
 }

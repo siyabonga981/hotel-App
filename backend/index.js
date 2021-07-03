@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 let { mongoose } = require('./db');
 let clientController = require('./controllers/clientController');
-
+let bookingsController = require('./controllers/bookingsController');
 let app = express();
 app.use(bodyParser.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
@@ -17,3 +17,4 @@ app.use((req, res, next) => {
 app.listen(3000, () => { console.log('Server started on port 3000'); });
 
 app.use('/clients', clientController);
+app.use('/bookings', bookingsController)

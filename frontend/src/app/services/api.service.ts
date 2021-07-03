@@ -19,4 +19,13 @@ export class ApiService {
     return this.http.post<any>(url, payload);
   }
 
+  addBooking(key, payload): Observable<any>{
+    const url = `${this.backendUrl}/${key}`;
+    return this.http.post<any>(url, payload);
+  }
+
+  getBookings(key, query?): Observable<any>{
+    const url = `${this.backendUrl}/${key}?email=${query}`;
+    return this.http.get<any>(url);
+  }
 }

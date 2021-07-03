@@ -37,12 +37,11 @@ router.get("/getClient/:id", (req, res) => {
 // post method to add new client
 router.post("/addNewClient", (req, res) => {
     var newClient = new Client({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        fullName: req.body.fullName,
         phone: req.body.phone,
         email: req.body.email,
-        gender: req.body.gender,
-        userPass: req.body.userPass
+        userPass: req.body.userPass,
+        status: req.body.status
     });
     newClient.save((err, doc) => {
         if (!err) {

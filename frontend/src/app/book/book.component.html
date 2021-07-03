@@ -1,4 +1,4 @@
-<div fxFlex="100" class="paddingTLB10px" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+<div fxFlex="100" class="padding10px" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
     <form #book="ngForm">
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <div fxFlex="92" fxLayout="column" fxLayoutGap="1.5em" fxLayoutAlign="space-around stretch">
@@ -7,7 +7,7 @@
                 </div>
                 <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                     <mat-form-field appearance="outline">
-                        <input [min]='date' matInput (focus)="picker.open()" [(ngModel)]="newBooking.checkInDate" [matDatepicker]="picker" name="checkInDate" placeholder="Check in date">
+                        <input required [min]='date' matInput (focus)="picker.open()" [(ngModel)]="newBooking.checkInDate" [matDatepicker]="picker" name="checkInDate" placeholder="Check in date">
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-icon matPrefix>today</mat-icon>
                     </mat-form-field>
@@ -15,7 +15,7 @@
 
                 <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                     <mat-form-field appearance="outline">
-                        <input [min]="date" matInput (focus)="picker2.open()" [(ngModel)]="newBooking.checkOutDate" [matDatepicker]="picker2" name="checkOutDate" placeholder="Check out date">
+                        <input required [min]="date" matInput (focus)="picker2.open()" [(ngModel)]="newBooking.checkOutDate" [matDatepicker]="picker2" name="checkOutDate" placeholder="Check out date">
                         <mat-datepicker #picker2></mat-datepicker>
                         <mat-icon matPrefix>today</mat-icon>
                     </mat-form-field>
@@ -24,7 +24,7 @@
                 <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
 
                     <mat-form-field appearance="outline">
-                        <input matInput [ngxTimepicker]="timePicker" [(ngModel)]="newBooking.checkInTime" name="checkInTime" placeholder="Check in time">
+                        <input required matInput [ngxTimepicker]="timePicker" [(ngModel)]="newBooking.checkInTime" name="checkInTime" placeholder="Check in time">
                         <ngx-material-timepicker #timePicker></ngx-material-timepicker>
                         <mat-icon matPrefix>schedule</mat-icon>
                     </mat-form-field>
@@ -32,7 +32,7 @@
 
                 <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                     <mat-form-field appearance="outline">
-                        <input matInput [ngxTimepicker]="timePicker2" [(ngModel)]="newBooking.checkOutTime" name="checkOutTime" placeholder="Check out time">
+                        <input required matInput [ngxTimepicker]="timePicker2" [(ngModel)]="newBooking.checkOutTime" name="checkOutTime" placeholder="Check out time">
                         <ngx-material-timepicker #timePicker2></ngx-material-timepicker>
                         <mat-icon matPrefix>schedule</mat-icon>
                     </mat-form-field>
@@ -40,15 +40,15 @@
 
                 <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                     <mat-form-field appearance="outline">
-                        <input matInput [(ngModel)]="newBooking.people" name="people" placeholder="People">
+                        <input required matInput [(ngModel)]="newBooking.people" name="people" placeholder="People">
                         <mat-icon matPrefix>groups</mat-icon>
                     </mat-form-field>
                 </div>
 
                 <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                     <mat-form-field appearance="outline">
-                        <mat-select [(ngModel)]="newBooking.room" name="room" placeholder="Room">
-                            <mat-option [disabled]="room.status == 'Unavailable'" *ngFor="let room of rooms" value="room">
+                        <mat-select required [(ngModel)]="newBooking.room" name="room" placeholder="Room">
+                            <mat-option [disabled]="room.status == 'Unavailable'" *ngFor="let room of rooms" [value]="room.number">
                                 <mat-icon>vpn_key</mat-icon> {{room.number}} - {{room.location}} - {{room.status}}</mat-option>
                         </mat-select>
                         <mat-icon matPrefix>hotel</mat-icon>
@@ -57,7 +57,7 @@
 
                 <div fxLayout="row wrap" fxLayoutAlign="center center">
                     <div fxFlex="90" fxLayout="column" fxLayoutAlign="start stretch">
-                        <button mat-raised-button class="darkBlueBg whiteColour" (click)="submitBooking(book)">Book</button>
+                        <button [disabled]="!book.valid" mat-raised-button class="darkBlueBg whiteColour" (click)="submitBooking()">Book</button>
                     </div>
                 </div>
             </div>

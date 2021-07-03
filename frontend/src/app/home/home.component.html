@@ -1,0 +1,45 @@
+<div fxFlex="100" class="padding10px" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+   <div class="height100px darkBlueBg border10px" fxLayout="column" fxLayoutAlign="start stretch">
+      <div class="height100px darkBlueBg border10px" fxLayout="column" fxLayoutAlign="start stretch">
+         <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="30" class="height70px" fxLayout="column" fxLayoutAlign="start stretch">
+               <img src="../../assets/img/click.svg">
+            </div>
+            <div fxFlex="60" class=" height100px relative" fxLayout="column" fxLayoutAlign="center center">
+               <span class="font15px bold whiteColour">We have deals for you, check your favourite rooms and explore!</span>
+               <span class="absolute viewBtn whiteColour">View</span>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div *ngFor="let item of offers; let i = index" class="height220px marginTop2em coverBg border10px" fxLayout="column" fxLayoutAlign="start stretch" [style.margin-bottom]="(i == 0) ? '28px !important' : ''">
+      <div class="border10px" fxLayout="column" fxLayoutAlign="start stretch">
+         <div class="" fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="100" class="relative height" fxLayout="column" fxLayoutAlign="start stretch">
+            <div class="absolute whiteColour fullWidth padding10px cardContent z-index100" fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="50">
+                <span class="suite  whiteColour">{{item.lodge}}</span>
+               <span class=" greyColour bold">{{item.location}}</span>
+               <mat-icon class=" greyColour bold absolute infoIcon">info</mat-icon>
+               </div>
+               <div fxLayout="column" fxLayoutAlign="start end" fxFlex="35">
+                <span class="suite  whiteColour">R <span class="whiteColour">{{item.price}}</span></span>
+               <span class="greyColour bold"> per night</span>
+               </div>
+               <!-- <span class="absolute viewBtn">View</span> -->
+            </div>
+               <div fxLayout="column" fxLayoutAlign="start end" class="fullWidth imgOverlay">
+               <img class="border10px boxShadow fullWidth" src="{{ item.image }}">
+               </div>
+                <div class="absolute bottomBanner whiteColour fullWidth height50px icon-box" fxLayout="row" fxLayoutAlign="center center">
+                <span class="material-icons primaryColour absolute left12px">favorite_border</span><span class="primaryColour addWL absolute">Add to wishlist</span>
+               <button (click)="navigateToBook()" class="absolute primaryColour">Book now</button>
+               <!-- <span class="absolute viewBtn">View</span> -->
+            </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</div>

@@ -43,30 +43,35 @@ export class LoginComponent implements OnInit {
   }
 
   loginClient(): any {
-    // this.spinner = true;
+    this.spinner = true;
     console.log(this.existingUser);
     console.log(this.login);
     
-    // if (this.login.invalid) {
-    //   return false;
-    // } 
-    // for (let client of this.clients) {
-    //   if (
-    //   this.existingUser['email'].toLowerCase() == client['email'].toLowerCase() && this.existingUser['userPass'] == client['userPass']
-    //   ){
-    //     this.found = true;
-    //     this.spinner = false;
-    //     this.router.navigate(['./hotelApp/dashboard']);
-    //     break;
-    //   } else{
-    //     this.spinner = false;
-    //     this.snackbar.open(
-    //       'Invalid login credentials', 'Close',
-    //       { duration: 3000 }
-    //     );
-    //     return false;
-    //   }
-    // }
+    if (this.login.invalid) {
+      return false;
+    } 
+    for (let client of this.clients) {
+      console.log(client)
+      if (
+      this.existingUser['email'].toLowerCase() == client['email'].toLowerCase() && this.existingUser['userPass'] == client['userPass']
+      ){
+        this.found = true;
+        this.spinner = false;
+        delete client['_id'];
+        delete client['userPass'];
+        sessionStorage.setItem('user', JSON.stringify(client));
+        this.router.navigate(['./hotelApp/dashboard']);
+        break;
+      } 
+    }
+    if(!this.found){
+        this.spinner = false;
+        this.snackbar.open(
+          'Invalid login credentials', 'Close',
+          { duration: 3000 }
+        );
+        return false;
+    }
   }
 
   getClients(): any {
@@ -84,34 +89,36 @@ export class LoginComponent implements OnInit {
   registerNewClient(): any {
     console.log(this.register);
     
-    // if (this.register.invalid) {
-    //   return false;
-    // } else {
-    //   for (let client of this.clients) {
-    //     if (
-    //       this.newUser['email'].toLowerCase() == client['email'].toLowerCase()
-    //     ) {
-    //       this.found = true;
-    //       this.snackbar.open(
-    //         'Client with that email already exists, please login.',
-    //         'Close',
-    //         { duration: 3000 }
-    //       );
-    //       break;
-    //     } 
-    //   }
-    //   if (!this.found) {
-    //     console.log('will work');
-    //     this.api.addClient('clients/addNewClient', this.newUser).subscribe(res => {
-    //       console.log(res);
-    //     });
-    //   }
-    // }
+    if (this.register.invalid) {
+      return false;
+    } else {
+      for (let client of this.clients) {
+        if (
+          this.newUser['email'].toLowerCase() == client['email'].toLowerCase()
+        ) {
+          this.found = true;
+          this.snackbar.open(
+            'Client with that email already exists, please login.',
+            'Close',
+            { duration: 3000 }
+          );
+          break;
+        } 
+      }
+      if (!this.found) {
+        console.log('will work');
+        this.newUser['status'] = 'Active';
+        this.newUser['profilePicture'] = '';
+        this.api.addClient('clients/addNewClient', this.newUser).subscribe(res => {
+          console.log(res);
+        });
+        this.getClients();
+        this.swopForm = true;
+      }
+    }
   }
   checkIfLetter(v){
 
-    
-    // return v.replace(/^[0-9]+@$/i, '');
   }
   validatePhone(a){
     console.log(a);

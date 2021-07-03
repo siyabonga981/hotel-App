@@ -13,6 +13,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BookComponent } from './book/book.component';
+import { BookingsComponent } from './bookings/bookings.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 
 
 @NgModule({
@@ -22,7 +27,12 @@ import { BookComponent } from './book/book.component';
     DashboardComponent,
     ContainerComponent,
     LoginComponent,
-    BookComponent
+    BookComponent,
+    BookingsComponent,
+    ProfileComponent,
+    ReviewsComponent,
+    WishlistComponent,
+    ReviewDialogComponent
   ],
   imports: [
     BrowserModule,

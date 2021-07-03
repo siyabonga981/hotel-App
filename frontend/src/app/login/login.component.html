@@ -1,7 +1,7 @@
 <div class="" fxLayout="row relative" fxLayoutAlign="center center">
     <mat-spinner *ngIf="spinner" class="spinner absolute"></mat-spinner>
-    <div *ngIf="swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
-        <form #login="ngForm" autocomplete="new-password">
+    <div *ngIf="!swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+        <form #login="ngForm" autocomplete="off">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex="94" fxLayout="column" fxLayoutGap="1.7em" fxLayoutAlign="space-around stretch">
                     <div class="margin0" fxLayout="column" fxLayoutAlign="center center">
@@ -16,8 +16,8 @@
                         </h3>
                     </div>
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
-                                             <mat-form-field appearance="outline">
-                            <input required matInput [(ngModel)]="existingUser.email" #email='ngModel' pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" name="email" type="email" placeholder="Enter email">
+                            <mat-form-field appearance="outline">
+                            <input autocomplete="false" required matInput [(ngModel)]="existingUser.email" #email='ngModel' pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" name="email" type="email" placeholder="Enter email">
                             <mat-icon matPrefix>mail</mat-icon>
                         </mat-form-field>
                         <div *ngIf="!email.valid && (email?.touched || email?.dirty)">
@@ -32,7 +32,7 @@
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                                                 <mat-form-field appearance="outline">
-                            <input required matInput [(ngModel)]="existingUser.userPass" #password="ngModel" name="password" pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" autocomplete="new-password" [type]="hide ? 'password' : 'text'" minlength="8" maxlength="8" placeholder="Enter password">
+                            <input autocomplete="false" required matInput [(ngModel)]="existingUser.userPass" #password="ngModel" name="password" pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" [type]="hide ? 'password' : 'text'" minlength="8" maxlength="8" placeholder="Enter password">
                             <mat-icon matPrefix>lock</mat-icon>
                             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </mat-form-field>
@@ -71,8 +71,8 @@
         </form>
     </div>
 
-    <div *ngIf="!swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
-        <form #register="ngForm" autocomplete="new-password">
+    <div *ngIf="swopForm" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch" fxFill>
+        <form #register="ngForm">
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex="94" fxLayout="column" fxLayoutGap="1.7em" fxLayoutAlign="space-around stretch">
                     <div class="margin0" fxLayout="column" fxLayoutAlign="center center">
@@ -83,7 +83,7 @@
                     </div>
                     <div class="inputContainer marginTop1em" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input onInput="fullName.value = fullName.value.replace(/[`&#33;@#$%^&*&#40;&#41;_+\-&#61;\[\]{};':\\|,.&#60;&#62;\/?~0-9]/g, '')" required matInput [(ngModel)]="newUser.fullName" #fullName="ngModel" name="fullName" pattern="^[a-zA-Z]+\s[a-zA-Z]+$" minlength="5" type="text" placeholder="Enter full name" [value]="fullName.value">
+                            <input autocomplete="false" onInput="fullName.value = fullName.value.replace(/[`&#33;@#$%^&*&#40;&#41;_+\-&#61;\[\]{};':\\|,.&#60;&#62;\/?~0-9]/g, '')" required matInput [(ngModel)]="newUser.fullName" #fullName="ngModel" name="fullName" pattern="^[a-zA-Z]+\s[a-zA-Z]+$" minlength="5" type="text" placeholder="Enter full name" [value]="fullName.value">
                             <mat-icon matPrefix>person</mat-icon>
                         </mat-form-field>
                         <div *ngIf="!fullName?.valid && (fullName?.dirty || fullName?.touched)" class="error">
@@ -99,7 +99,7 @@
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input (keyup)="validatePhone(newUser.phone)" required matInput [(ngModel)]="newUser.phone" #phone="ngModel" name="phone" type="text" [value]="modifiedPhone" placeholder="Enter phone in form +27 xxxxxxxxx" minlength="13" maxlength="13">
+                            <input autocomplete="false" (keyup)="validatePhone(newUser.phone)" required matInput [(ngModel)]="newUser.phone" #phone="ngModel" name="phone" type="text" [value]="modifiedPhone" placeholder="Enter phone in form +27 xxxxxxxxx" minlength="13" maxlength="13">
                             <mat-icon matPrefix>call</mat-icon>
                         </mat-form-field>
                         <div *ngIf="!phone?.valid && (phone?.touched || phone?.dirty) ">
@@ -117,7 +117,7 @@
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input required matInput [(ngModel)]="newUser.email" #email='ngModel' pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" name="email" type="email" placeholder="Enter email">
+                            <input autocomplete="false" required matInput [(ngModel)]="newUser.email" #email='ngModel' pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" name="email" type="email" placeholder="Enter email">
                             <mat-icon matPrefix>mail</mat-icon>
                         </mat-form-field>
                         <div *ngIf="!email.valid && (email?.touched || email?.dirty)">
@@ -132,7 +132,7 @@
 
                     <div class="inputContainer" fxLayout="column" fxLayoutAlign="start stretch">
                         <mat-form-field appearance="outline">
-                            <input required matInput [(ngModel)]="newUser.userPass" #password="ngModel" name="password" pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" autocomplete="new-password" [type]="hide ? 'password' : 'text'" minlength="8" maxlength="8" placeholder="Enter password">
+                            <input autocomplete="false" required matInput [(ngModel)]="newUser.userPass" #password="ngModel" name="password" pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$" [type]="hide ? 'password' : 'text'" minlength="8" maxlength="8" placeholder="Enter password">
                             <mat-icon matPrefix>lock</mat-icon>
                                                         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 
