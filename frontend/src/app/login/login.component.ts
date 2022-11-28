@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   constructor(private api: ApiService, private snackbar: MatSnackBar, private router: Router) {}
 
   ngOnInit(): void {
-    this.getClients();
+    // this.getClients();
   }
 
   switchForm(): void {
@@ -43,35 +43,44 @@ export class LoginComponent implements OnInit {
   }
 
   loginClient(): any {
-    this.spinner = true;
-    console.log(this.existingUser);
-    console.log(this.login);
+    this.api.login(`clients/login?email=${this.existingUser.email}&password=${this.existingUser.userPass}`).subscribe(
+      (res) => {
+        console.log(res);
+        this.clients = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    // this.spinner = true;
+    // console.log(this.existingUser);
+    // console.log(this.login);
     
-    if (this.login.invalid) {
-      return false;
-    } 
-    for (let client of this.clients) {
-      console.log(client)
-      if (
-      this.existingUser['email'].toLowerCase() == client['email'].toLowerCase() && this.existingUser['userPass'] == client['userPass']
-      ){
-        this.found = true;
-        this.spinner = false;
-        delete client['_id'];
-        delete client['userPass'];
-        sessionStorage.setItem('user', JSON.stringify(client));
-        this.router.navigate(['./hotelApp/dashboard']);
-        break;
-      } 
-    }
-    if(!this.found){
-        this.spinner = false;
-        this.snackbar.open(
-          'Invalid login credentials', 'Close',
-          { duration: 3000 }
-        );
-        return false;
-    }
+    // if (this.login.invalid) {
+    //   return false;
+    // } 
+    // for (let client of this.clients) {
+    //   console.log(client)
+    //   if (
+    //   this.existingUser['email'].toLowerCase() == client['email'].toLowerCase() && this.existingUser['userPass'] == client['userPass']
+    //   ){
+    //     this.found = true;
+    //     this.spinner = false;
+    //     delete client['_id'];
+    //     delete client['userPass'];
+    //     sessionStorage.setItem('user', JSON.stringify(client));
+    //     this.router.navigate(['./hotelApp/dashboard']);
+    //     break;
+    //   } 
+    // }
+    // if(!this.found){
+    //     this.spinner = false;
+    //     this.snackbar.open(
+    //       'Invalid login credentials', 'Close',
+    //       { duration: 3000 }
+    //     );
+    //     return false;
+    // }
   }
 
   getClients(): any {

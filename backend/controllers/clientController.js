@@ -101,40 +101,45 @@ router.delete("/deleteClient/:id", (req, res) => {
 });
 
 // put method to update client status
-router.put("/login", (req, res) => {
-    let student = req.body[0].singleClient;
-    let allClients = req.body[1].allClients;
-    if (allClients.length) {
-        for (let i = 0; i < allClients.length; i++) {
-            if (
-                student.email.toLowerCase() == allClients[i].email.toLowerCase() &&
-                student.userPass == allClients[i].userPass
-            ) {
-                student = allClients[i];
-            }
-        }
-    }
-    if (!clientController.isValid(student._id)) {
-        console.log(student);
-        res.send(student);
-    } else {
-        var newStatus = {
-            isActive: true,
-        };
+router.get("/login", (req, res) => {
+    console.log(req.query);
+    Client.find({ email: 'hlongwanesiyabonga6@gmail.com', password: 'test1A!a' }, (err, doc) => {
+        console.log(doc)
+        res.send(doc)
+    })
+    // let student = req.body[0].singleClient;
+    // let allClients = req.body[1].allClients;
+    // if (allClients.length) {
+    //     for (let i = 0; i < allClients.length; i++) {
+    //         if (
+    //             student.email.toLowerCase() == allClients[i].email.toLowerCase() &&
+    //             student.userPass == allClients[i].userPass
+    //         ) {
+    //             student = allClients[i];
+    //         }
+    //     }
+    // }
+    // if (!clientController.isValid(student._id)) {
+    //     console.log(student);
+    //     res.send(student);
+    // } else {
+    //     var newStatus = {
+    //         isActive: true,
+    //     };
 
-        Client.findByIdAndUpdate(
-            student._id, { $set: newStatus }, { new: true },
-            (err, doc) => {
-                if (!err) {
-                    res.send(doc);
-                } else {
-                    console.log(
-                        `Error updating Client : ${JSON.stringify(err, undefined, 2)}`
-                    );
-                }
-            }
-        );
-    }
+    //     Client.findByIdAndUpdate(
+    //         student._id, { $set: newStatus }, { new: true },
+    //         (err, doc) => {
+    //             if (!err) {
+    //                 res.send(doc);
+    //             } else {
+    //                 console.log(
+    //                     `Error updating Client : ${JSON.stringify(err, undefined, 2)}`
+    //                 );
+    //             }
+    //         }
+    //     );
+    // }
 });
 
 // delete method to update client status in database

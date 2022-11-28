@@ -38,14 +38,14 @@ export class ContainerComponent implements OnInit {
   constructor(private api: ApiService, private common: CommonService, private router: Router, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if(!this.common.getUser()){
-      this.router.navigate(['login']);
-      this.snackbar.open('You need to be logged to access this page', 'Close', {
-        duration: 4000
-      });
-    } else{
-      this.user = this.common.getUser();
-    }
+    // if(!this.common.getUser()){
+    //   this.router.navigate(['login']);
+    //   this.snackbar.open('You need to be logged to access this page', 'Close', {
+    //     duration: 4000
+    //   });
+    // } else{
+    //   this.user = this.common.getUser();
+    // }
     this.getBookings();
   }
   getBookings(){

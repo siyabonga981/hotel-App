@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://admin:jvPh60sb@hotelapp.2tda4.mongodb.net/HotelApp", { useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
+mongoose.connect("mongodb+srv://hotel:jvPh60sb@mycluster.pilxa.mongodb.net/HotelApp?retryWrites=true&w=majority", { useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology: true, useFindAndModify: false }, (err) => {
     if (!err) console.log("Database connection successful");
     else
         console.log(

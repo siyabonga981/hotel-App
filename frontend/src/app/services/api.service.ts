@@ -28,4 +28,9 @@ export class ApiService {
     const url = `${this.backendUrl}/${key}?email=${query}`;
     return this.http.get<any>(url);
   }
+
+  login(key): Observable<any>{
+    const url = `${this.backendUrl}/${key}`;
+    return this.http.get<any>(url);
+  }
 }
